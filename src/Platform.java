@@ -29,4 +29,8 @@ public class Platform extends Rectangle {
     public int getPastY(){
         return pastY;
     }
+
+    public void selfDestroy(){
+        this.game.destroyPlatform(this);
+    }
 }

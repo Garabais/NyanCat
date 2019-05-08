@@ -25,7 +25,7 @@ public class Game extends JPanel implements ActionListener{
         this.jumpForce = 0;
         this.platforms = new ArrayList<>();
         this.platforms.add(new Platform(0,400,1000,10,this));
-        this.platforms.add(new Platform(0,200,1000,10,this));
+        this.platforms.add(new BreakablePlattform(0,200,1000,10,this));
 
 
 
@@ -48,7 +48,11 @@ public class Game extends JPanel implements ActionListener{
     public void checkCollisions(){
         this.player.resetCollision();
         for (int i = this.platforms.size() - 1; i >= 0; i--){
-            this.player.checkCollision(this.platforms.get(i));
+            if (this.platforms.get(i) instanceof BreakablePlattform){
+                this.player.checkCollision((BreakablePlattform) this.platforms.get(i));
+            }else {
+                this.player.checkCollision(this.platforms.get(i));
+            }
         }
     }
 
@@ -85,5 +89,9 @@ public class Game extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         this.refresh();
         this.repaint();
+    }
+
+    public void destroyPlatform(Platform platform){
+        this.platforms.remove(platform);
     }
 }

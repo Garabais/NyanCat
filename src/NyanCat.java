@@ -44,6 +44,14 @@ public class NyanCat extends Rectangle {
         }
     }
 
+    public <T extends BreakablePlattform> void checkCollision(T platform){
+        if (this.intersects(platform) && platform.getPastY() >= this.y + this.getHeight()){
+            this.ground = true;
+            this.jumpCount = 2;
+            platform.touch();
+        }
+    }
+
     public void resetCollision(){
         this.ground = false;
     }
