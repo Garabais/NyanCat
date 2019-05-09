@@ -14,7 +14,7 @@ public class Music {
     Music(String path){
         try {
             this.clip = AudioSystem.getClip();
-            this.clip.open(AudioSystem.getAudioInputStream(new File("music/Nyan Cat.wav")));
+            this.clip.open(AudioSystem.getAudioInputStream(new File(path)));
             this.clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();

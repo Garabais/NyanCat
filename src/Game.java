@@ -20,7 +20,7 @@ public class Game extends JPanel implements ActionListener{
     private int jumpForce, verticalHeight, score, multiplier, multiplierAccumulator;
     public boolean stop;
     private Controls controls;
-    public static final int MAX_SIZE = 3000;
+    public static final int MAX_SIZE = 2000;
 
     public Game(){
         super();
@@ -108,7 +108,7 @@ public class Game extends JPanel implements ActionListener{
     }
     private void generatePlatforms(){
         Random rnd = new Random();
-        if (rnd.nextInt(100) < 15){
+        if (rnd.nextInt(100) < 10){
 //            int num = 1 + rnd.nextInt(2);
 //
 //            for (int i = 0; i < num; i++) {
@@ -154,7 +154,7 @@ public class Game extends JPanel implements ActionListener{
             for (int i = this.platforms.size() - 1; i >= 0; i--){
 
 
-                if (this.platforms.get(i).intersects(plt) || this.player.intersects(plt) || Math.abs(this.platforms.get(i).getY() - plt.getY()) < 32) {
+                if (this.platforms.get(i).intersects(plt) || this.player.intersects(plt) || Math.abs(this.platforms.get(i).getY() - plt.getY()) < 16) {
                     add = false;
                 }
 
@@ -284,7 +284,6 @@ public class Game extends JPanel implements ActionListener{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.player.draw(g);
 
         for (int i = this.stars.size() - 1; i >= 0; i--){
             this.stars.get(i).draw(g);
@@ -302,7 +301,7 @@ public class Game extends JPanel implements ActionListener{
             this.rainbow.get(i).draw(g);
         }
 
-
+        this.player.draw(g);
 
         g.setColor(Color.WHITE);
         g.drawString("Score: " + this.score,15, 20);
