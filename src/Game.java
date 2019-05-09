@@ -94,8 +94,8 @@ public class Game extends JPanel implements ActionListener{
 
         }
 
-        System.out.println(multiplierAccumulator);
-        if (this.multiplierAccumulator > 360){
+//        System.out.println(multiplierAccumulator);
+        if (this.multiplierAccumulator > 600){
             this.resetMultiplierAccumulator();
             this.multiplier = 100;
         }
@@ -152,11 +152,17 @@ public class Game extends JPanel implements ActionListener{
             add = true;
 
             for (int i = this.platforms.size() - 1; i >= 0; i--){
-                if (this.platforms.get(i).intersects(plt) || this.player.intersects(plt)) {
+
+
+                if (this.platforms.get(i).intersects(plt) || this.player.intersects(plt) || Math.abs(this.platforms.get(i).getY() - plt.getY()) < 32) {
                     add = false;
                 }
+
+//                System.out.println(Math.abs(this.platforms.get(i).getY() - plt.getY()) < 64);
+
             }
 
+//            System.out.println(add);
             if (add) {
                 this.platforms.add(plt);
             }
